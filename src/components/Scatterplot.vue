@@ -81,11 +81,11 @@ export default {
       // d3.csv("cereal.csv", function(error, data) {
       var data = this.points;
       // change string (from CSV) into number format
-      data.forEach(function(d) {
-        d.Calories = +d.Calories;
-        d["Protein (g)"] = +d["Protein (g)"];
-        //    console.log(d);
-      });
+      // data.forEach(function(d) {
+      //   d.Calories = +d.Calories;
+      //   d["Protein (g)"] = +d["Protein (g)"];
+      //   //    console.log(d);
+      // });
 
       // don't want dots overlapping axis, so add in buffer to data domain
       xScale.domain([d3.min(data, xValue) - 1, d3.max(data, xValue) + 1]);
@@ -102,7 +102,7 @@ export default {
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
-        .text("Calories");
+        .text("x");
 
       // y-axis
       svg
@@ -115,7 +115,7 @@ export default {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Protein (g)");
+        .text("y");
 
       // draw dots
       svg
@@ -136,9 +136,7 @@ export default {
             .duration(200)
             .style("opacity", 0.9);
           tooltip
-            .html(
-              d["Cereal Name"] + "<br/> (" + xValue(d) + ", " + yValue(d) + ")"
-            )
+            .html("(" + xValue(d) + ", " + yValue(d) + ")")
             .style("left", d3.event.pageX + 5 + "px")
             .style("top", d3.event.pageY - 28 + "px");
         })
@@ -198,6 +196,7 @@ body {
 
 .dot {
   stroke: #000;
+  fill: red;
 }
 
 .tooltip {
